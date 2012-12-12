@@ -6,8 +6,8 @@ describe Morsu::Parser do
       Morsu::Parser.should respond_to(:parse_plaintext)
     end
 
-    it "responds to 'parse_encoded_text'" do
-      Morsu::Parser.should respond_to(:parse_encoded_text)
+    it "responds to 'parse_morse_code'" do
+      Morsu::Parser.should respond_to(:parse_morse_code)
     end
   end
 
@@ -65,18 +65,17 @@ describe Morsu::Parser do
       '----.' => '9', '-----' => '0'
     }
 
-    it "should parse morse code into alphabet" do
+    it "should parse morse code into upcased alphabet" do
       PLAINTEXT_HASH.keys.each do |key|
-        plaintext = Morsu::Parser.parse_encoded_text(key)
+        plaintext = Morsu::Parser.parse_morse_code(key)
         plaintext.should eql(PLAINTEXT_HASH[key]), "'#{plaintext}' is not equal to #{PLAINTEXT_HASH[key]}"
       end
     end
 
     it "should convert complete sentences" do
-      plaintext = Morsu::Parser.parse_encoded_text('.... . .-.. .-.. ---       .-- --- .-. .-.. -..')
+      plaintext = Morsu::Parser.parse_morse_code('.... . .-.. .-.. ---       .-- --- .-. .-.. -..')
       plaintext.should eql('HELLO WORLD')
     end
-
   end
 
 end

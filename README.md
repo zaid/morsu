@@ -24,7 +24,7 @@ Or install it yourself as:
     Morsu::Parser.parse_plaintext('Hello World')
 
     # Parse Morse code into plaintext
-    Morsu::Parser.parse_encoded_text('... --- ...')
+    Morsu::Parser.parse_morse_code('... --- ...')
 
 ## Contributing
 

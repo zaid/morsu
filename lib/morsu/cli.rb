@@ -11,7 +11,7 @@ module Morsu
 
     desc "from_morse_code MORSE CODE", "Convert Morse code into plaintext"
     def from_morse_code(text)
-      puts Morsu::Parser.parse_encoded_text(text)
+      puts Morsu::Parser.parse_morse_code(text)
     end
   end
 end

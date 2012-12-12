@@ -33,7 +33,7 @@ module Morsu
       encoded_text.strip
     end
 
-    def self.parse_encoded_text(encoded_text, word_separator = '       ', letter_separator = ' ')
+    def self.parse_morse_code(encoded_text, word_separator = '       ', letter_separator = ' ')
       plaintext = ''
       words = encoded_text.split(word_separator)
       words.each do |word|
