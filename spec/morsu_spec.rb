@@ -76,6 +76,16 @@ describe Morsu::Parser do
       plaintext = Morsu::Parser.parse_morse_code('.... . .-.. .-.. ---       .-- --- .-. .-.. -..')
       plaintext.should eql('HELLO WORLD')
     end
+
+    it "should parse words which are 5 spaces apart" do
+      plaintext = Morsu::Parser.parse_morse_code('..-. -. ---     .-. -..', (' ' * 4))
+      plaintext.should eql('FNO RD')
+    end
+
+    it "should parse letters which are 2 spaces apart" do
+      plaintext = Morsu::Parser.parse_morse_code('..-.  -.  ---        .-.  -..', (' ' * 6), '  ')
+      plaintext.should eql('FNO RD')
+    end
   end
 
 end
