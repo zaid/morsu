@@ -19,8 +19,12 @@ Or install it yourself as:
 ## Usage
 
     require 'morsu'
-
+    
+    # Parse plaintext into Morse code
     Morsu::Parser.parse_plaintext('Hello World')
+
+    # Parse Morse code into plaintext
+    Morsu::Parser.parse_encoded_text('... --- ...')
 
 ## Contributing
 
