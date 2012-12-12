@@ -53,4 +53,30 @@ describe Morsu::Parser do
     end
   end
 
+  context "parsing morse code into plaintext" do
+
+    PLAINTEXT_HASH = {
+      '.-' => 'A', '-...' => 'B', '-.-.' => 'C', '-..' => 'D', '.' => 'E', '..-.' => 'F',
+      '--.' => 'G', '....' => 'H', '..' => 'I', '.---' => 'J', '-.-' => 'K', '.-..' => 'L',
+      '--' => 'M', '-.' => 'N', '---' => 'O', '.--.' => 'P', '--.-' => 'Q', '.-.' => 'R',
+      '...' => 'S', '-' => 'T', '..-' => 'U', '...-' => 'V', '.--' => 'W', '-..-' => 'X',
+      '-.--' => 'Y', '--..' => 'Z', '.----' => '1', '..---' => '2', '...--' => '3',
+      '....-' => '4', '.....' => '5', '-....' => '6', '--...' => '7', '---..' => '8',
+      '----.' => '9', '-----' => '0'
+    }
+
+    it "should parse morse code into alphabet" do
+      PLAINTEXT_HASH.keys.each do |key|
+        plaintext = Morsu::Parser.parse_encoded_text(key)
+        plaintext.should eql(PLAINTEXT_HASH[key]), "'#{plaintext}' is not equal to #{PLAINTEXT_HASH[key]}"
+      end
+    end
+
+    it "should convert complete sentences" do
+      plaintext = Morsu::Parser.parse_encoded_text('.... . .-.. .-.. ---       .-- --- .-. .-.. -..')
+      plaintext.should eql('HELLO WORLD')
+    end
+
+  end
+
 end
