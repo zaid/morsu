@@ -33,11 +33,15 @@ module Morsu
       encoded_text.strip
     end
 
-    def self.parse_morse_code(encoded_text, word_separator = '       ', letter_separator = ' ')
+    def self.parse_morse_code(encoded_text, opts = {})
+      defaults = { :word_separator => '      ', :letter_separator => ' ' }
+      opts = defaults.merge(opts)
+
       plaintext = ''
-      words = encoded_text.split(word_separator)
+      words = encoded_text.split(opts[:word_separator])
+
       words.each do |word|
-        word.split(letter_separator).each do |key|
+        word.split(opts[:letter_separator]).each do |key|
           plaintext << PLAINTEXT[key] if PLAINTEXT.has_key?(key)
         end
         plaintext << (' ')
