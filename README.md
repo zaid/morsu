@@ -1,4 +1,4 @@
-# Morsu
+# Morsu [![Code Climate](https://codeclimate.com/github/zaid/morsu.png)](https://codeclimate.com/github/zaid/morsu) [![Build Status](https://travis-ci.org/zaid/morsu.png)](https://travis-ci.org/zaid/morsu)
 
 A simple Morse code library.
 
