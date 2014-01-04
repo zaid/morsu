@@ -51,6 +51,11 @@ describe Morsu::Parser do
       encoded_text = Morsu::Parser.parse_plaintext('Hello World')
       encoded_text.should include('      ')
     end
+
+    it "should return an empty string if nil is passed in" do
+      encoded_text = Morsu::Parser.parse_plaintext(nil)
+      encoded_text.should eql('')
+    end
   end
 
   context "parsing morse code into plaintext" do
@@ -85,6 +90,11 @@ describe Morsu::Parser do
     it "should parse letters which are 2 spaces apart" do
       plaintext = Morsu::Parser.parse_morse_code('..-.  -.  ---        .-.  -..', :letter_separator => '  ')
       plaintext.should eql('FNO RD')
+    end
+
+    it "should return an empty string if nil is passed in" do
+      plaintext = Morsu::Parser.parse_morse_code(nil)
+      plaintext.should eql('')
     end
   end
 

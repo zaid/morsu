@@ -15,13 +15,17 @@ module Morsu
 
     def self.parse_plaintext(plaintext)
       encoded_text = ''
-      words = plaintext.split(' ')
-      words.each do |word|
-        word.each_char.map do |letter|
-         encoded_text << "#{MORSE_CODE[letter.upcase]} " if MORSE_CODE.has_key?(letter.upcase)
+
+      unless plaintext.nil?
+        words = plaintext.split(' ')
+        words.each do |word|
+          word.each_char.map do |letter|
+            encoded_text << "#{MORSE_CODE[letter.upcase]} " if MORSE_CODE.has_key?(letter.upcase)
+          end
+          encoded_text << (' ' * 6)
         end
-        encoded_text << (' ' * 6)
       end
+
       encoded_text.strip
     end
 
@@ -30,14 +34,18 @@ module Morsu
       opts = defaults.merge(opts)
 
       plaintext = ''
-      words = encoded_text.split(opts[:word_separator])
 
-      words.each do |word|
-        word.split(opts[:letter_separator]).each do |key|
-          plaintext << PLAINTEXT[key] if PLAINTEXT.has_key?(key)
+      unless encoded_text.nil?
+        words = encoded_text.split(opts[:word_separator])
+
+        words.each do |word|
+          word.split(opts[:letter_separator]).each do |key|
+            plaintext << PLAINTEXT[key] if PLAINTEXT.has_key?(key)
+          end
+          plaintext << (' ')
         end
-        plaintext << (' ')
       end
+
       plaintext.strip
     end
   end
